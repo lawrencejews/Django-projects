@@ -1,6 +1,6 @@
-#### NextJS-Django-Backend
+### NextJS-Django-Backend
 
-##### Project Dependencies
+#### Project Dependencies
 - Create a virtual-env `python3 -m venv venv`
 - Activate your environment `source ./venv/bin/activate`
 - Check the project working Environment `env | grep ENV`
@@ -9,7 +9,7 @@
 - Django Admin used to automatically build a site area for the records ` django-admin startproject nexthome . ` i.e. `CREATE,VIEW, UPDATE, & DELETE`
 - Create a project-model `python manage.py startapp waitlists`
 - Set up project's run scripts with a rav file in the root folder `rav.yaml`
-`NOTE`: Django provides the various commands that are used to perform migration related tasks. 
+- `NOTE`: Django provides the various commands that are used to perform migration related tasks. 
 - `makemigrations` : It is used to create a migration file that contains code for the tabled schema of a model.
 - `migrate` : It creates table according to the schema defined in the migration file.
 - `sqlmigrate` : It is used to show a raw SQL query of the applied migration.

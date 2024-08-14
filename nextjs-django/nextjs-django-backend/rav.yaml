@@ -11,4 +11,4 @@ scripts:
     curl -X POST -H "Content-Type: application/json" -d ' {"username": "lawrencejews", 
     "password": "1234"}' http://127.0.0.1:8001/api/token/pair
   curl_protected: | 
-    curl -X POST -H "Authorization: Bearer <your-access-token> " http://127.0.0.1:8001/api/me
+    curl -X GET -H "Authorization: Bearer <curl_auth-access-token> " http://127.0.0.1:8001/api/me
