@@ -1,22 +1,18 @@
 "use client"
-import { useAuth } from "@/components/authProvider";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export default function Home() {
+const WAITLIST_API_URL = "/api/waitlists/"
 
-  const auth = useAuth()
+export default function Page() {
 
-  const { data, error, isLoading } = useSWR('http://127.0.0.1:8001/api/hello', fetcher);
+  const { data, error, isLoading } = useSWR(WAITLIST_API_URL, fetcher);
   if (error) return <div>failed to load</div>
   if(isLoading) return <div>loading...</div>
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        {auth.isAuthenticated ? "Hello User" : "Hello Guest"}
-      </div>
       <div>
         {JSON.stringify(data)}
       </div>

@@ -1,6 +1,6 @@
-### NextJS-Django-Backend
+# NextJS-Django-Backend
 
-#### Project Dependencies
+## Project Dependencies
 - Create a virtual-env `python3 -m venv venv`
 - Activate your environment `source ./venv/bin/activate`
 - Check the project working Environment `env | grep ENV`

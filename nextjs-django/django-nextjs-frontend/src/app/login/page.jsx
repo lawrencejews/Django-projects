@@ -3,11 +3,14 @@ import React from 'react'
 
 import { useAuth } from "@/components/authProvider"
 
+import {useRouter} from "next/navigation"
+
 const LOGIN_URL = "/api/login/"
 
 const LoginPage = () => {
 
   const auth = useAuth()
+  const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -32,6 +35,7 @@ const LoginPage = () => {
     if (response.ok) {
       console.log("logged in")
       auth.login(data?.username)
+      router.replace("/")
     } else {
       console.log(await response.json())
     }
