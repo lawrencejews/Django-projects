@@ -3,14 +3,11 @@ import React from 'react'
 
 import { useAuth } from "@/components/authProvider"
 
-import {useRouter} from "next/navigation"
-
 const LOGOUT_URL = "/api/logout/"
 
 const LoginPage = () => {
 
   const auth = useAuth()
-  const  router = useRouter()
 
   async function handleClick(e) {
     e.preventDefault()
@@ -25,7 +22,6 @@ const LoginPage = () => {
     if (response.ok) {
       console.log("logged Out")
       auth.logout()
-      router.replace("/login")
       
     } else {
       console.log(await response.json())

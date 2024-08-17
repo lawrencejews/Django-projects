@@ -1,5 +1,7 @@
 "use client"
+
 import { useAuth } from "@/components/authProvider";
+import ThemeToggleButton from "@/components/themeToggleButton";
 import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -14,11 +16,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div>{data && data.apiEndpoint}</div>
       <div>
         {auth.isAuthenticated ? "Hello User" : "Hello Guest"}
       </div>
       <div>
-        {JSON.stringify(data)}
+        <ThemeToggleButton/>
       </div>
     </main>
   );

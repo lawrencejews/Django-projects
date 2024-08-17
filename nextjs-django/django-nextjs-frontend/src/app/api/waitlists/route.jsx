@@ -25,7 +25,5 @@ export async function GET(request) {
   if (!response.ok) {
     return NextResponse.json({...result}, {status: 401})
   }
-
-
   return NextResponse.json({...result}, {status: 200})
 }
