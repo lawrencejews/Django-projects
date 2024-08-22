@@ -14,34 +14,34 @@ const LOGIN_URL = "/api/login/"
 export default function Page() {
 
   const auth = useAuth()
-  async function handleSubmit (event) {
-        event.preventDefault()
-        console.log(event, event.target)
-        const formData = new FormData(event.target)
-        const objectFromForm = Object.fromEntries(formData)
-        const jsonData = JSON.stringify(objectFromForm)
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: jsonData
-        }
-        const response = await fetch(LOGIN_URL, requestOptions)
-        let data = {}
-        try {
-          data = await response.json()
-        } catch (error) {
-          
-        }
-        // const data = await response.json()
-        if (response.ok) {
-            console.log("logged in")
-            auth.login(data?.username)
-        } else {
-          console.log(await response.json())
-        }
+  async function handleSubmit(e) {
+    e.preventDefault()
+    console.log(e, e.target)
+    const formData = new FormData(e.target)
+    const objectFromForm = Object.fromEntries(formData)
+    const jsonData = JSON.stringify(objectFromForm)
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: jsonData
     }
+    const response = await fetch(LOGIN_URL, requestOptions)
+    let data = {}
+    try {
+      data = await response.json()
+    } catch (error) {
+
+    }
+
+    if (response.ok) {
+      console.log("logged in")
+      auth.login(data?.username)
+    } else {
+      console.log(await response.json())
+    }
+  }
 
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -54,33 +54,32 @@ export default function Page() {
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link
-                  href="/forgot-password"
-                  className="ml-auto inline-block text-sm underline"
-                >
-                  Forgot your password?
-                </Link>
+            <form onSubmit={handleSubmit}>
+              <div className="grid gap-2">
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  type="username"
+                  name="username"
+                  placeholder="Your username"
+                  required
+                />
               </div>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
-            <Button variant="outline" className="w-full">
-              Login with Google
-            </Button>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                  <Link
+                    href="/forgot-password"
+                    className=" hidden">
+                    Forgot your password?
+                  </Link>
+                </div>
+                <Input id="password" type="password" required />
+              </div>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </form>
           </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

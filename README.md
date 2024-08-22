@@ -5,3 +5,5 @@ Django provides the various commands that are used to perform migration related 
 - `sqlmigrate` : It is used to show a raw SQL query of the applied migration.
 - `showmigrations` : It lists out all the migrations and their status.
 ## NextJS & Django
+- Frontend Project dependencies: `nextJS`, `shadcn-ui`, `lucide-react`, `tailwindcss`, `react-dom`, `react`, and `swr`
+- Backend Project dependencies: `pydantic[email]`, `rav`, `django-ninja-jwt[crypto]`, `django-ninja` and `Django`
