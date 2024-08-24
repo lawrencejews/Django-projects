@@ -16,7 +16,7 @@ export default function Page() {
   const auth = useAuth()
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log(e, e.target)
+    
     const formData = new FormData(e.target)
     const objectFromForm = Object.fromEntries(formData)
     const jsonData = JSON.stringify(objectFromForm)
@@ -91,7 +91,7 @@ export default function Page() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.svg"
+          src="/construction.svg"
           alt="Image"
           width="1920"
           height="1080"

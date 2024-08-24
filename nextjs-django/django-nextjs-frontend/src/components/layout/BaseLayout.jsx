@@ -1,6 +1,6 @@
 "use client"
 
-import Navbar from "./Navabr"
+import Navbar from "./Navbar"
 
 export default function BaseLayout({ children, className }) {
 

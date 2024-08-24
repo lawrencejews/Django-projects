@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 import { useAuth } from "../authProvider"
-import NavLinks from "./NavLinks"
+import NavLinks, { NonUserLinks } from "./NavLinks"
 
 function BrandLink({ displayName, className }) {
 
@@ -49,10 +49,10 @@ export default function Navbar({ className }) {
           NavLinks.map((navLinkItem, idx) => {
 
             const shouldHide = !auth.isAuthenticated && navLinkItem.authRequired
-            
+
             return shouldHide ? null : (
               <Link
-                key={idx}
+                key={`nav-links-a-${idx}`}
                 href={navLinkItem.href}
                 className="text-muted-foreground transition-colors hover:text-foreground"
               >
@@ -83,7 +83,7 @@ export default function Navbar({ className }) {
 
                 return shouldHide ? null : (
                   <Link
-                    key={idx}
+                    key={`nav-links-b-${idx}`}
                     href={navLinkItem.href}
                     className="text-muted-foreground  hover:text-foreground"
                   >
@@ -92,14 +92,36 @@ export default function Navbar({ className }) {
                 )
               })
             }
-            {auth.isAuthenticated &&
+            {auth.isAuthenticated ?
               <Link href="/logout" className="text-muted-foreground  hover:text-foreground">
                 Logout
               </Link>
+              :
+              <>
+                {
+                  NonUserLinks.map((navLinkItem, idx) => {
+
+                    const shouldHide = !auth.isAuthenticated && navLinkItem.authRequired
+
+                    return shouldHide ? null : (
+                      <Link
+                        key={`nav-links-c-${idx}`}
+                        href={navLinkItem.href}
+                        className="text-muted-foreground  hover:text-foreground"
+                      >
+                        {navLinkItem.label}
+                      </Link>
+                    )
+                  })
+                }
+              </>
             }
           </nav>
         </SheetContent>
       </Sheet>
+      <div className="md:hidden">
+        <BrandLink displayName={true} />
+      </div>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <form className="ml-auto flex-1 sm:flex-initial">
           <div className="relative">
@@ -111,7 +133,7 @@ export default function Navbar({ className }) {
             />
           </div>
         </form>
-        {auth.isAuthenticated &&
+        {auth.isAuthenticated ?
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
@@ -128,6 +150,28 @@ export default function Navbar({ className }) {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          : <>
+            {
+              NonUserLinks.map((navLinkItem, idx) => {
+
+                const shouldHide = !auth.isAuthenticated && navLinkItem.authRequired
+
+                return shouldHide ? null : (
+                  <Link
+                    key={`nav-links-d-${idx}`}
+                    href={navLinkItem.href}
+                    className="text-muted-foreground  hover:text-foreground"
+                  >
+                    {navLinkItem.label}
+                  </Link>
+                )
+              })
+            }
+          </>}
+        {auth.isAuthenticated &&
+          <Link href="/logout" className="text-muted-foreground  hover:text-foreground">
+            Logout
+          </Link>
         }
       </div>
     </header>
