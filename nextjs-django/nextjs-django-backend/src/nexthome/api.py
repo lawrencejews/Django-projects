@@ -1,10 +1,11 @@
+import helpers
 from ninja import NinjaAPI, Schema
 
 from ninja_extra import NinjaExtraAPI 
 from ninja_jwt.authentication import JWTAuth 
 from ninja_jwt.controller import NinjaJWTDefaultController
 
-api = NinjaExtraAPI()
+api = NinjaExtraAPI(auth=helpers.api_auth_user_or_anonymous)
 api.register_controllers(NinjaJWTDefaultController)
 api.add_router("/waitlists/", "waitlists.api.router")
 
@@ -18,7 +19,7 @@ def hello(request):
   print(request)
   return {"message": "Hello World"}
 
-@api.get("/me", response=UserSchema, auth=JWTAuth())
+@api.get("/me", response=UserSchema, auth=helpers.api_auth_user_required)
 def me(request):
   print(request.user)
   return request.user

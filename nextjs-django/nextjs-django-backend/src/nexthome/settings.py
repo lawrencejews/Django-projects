@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # Internal
     "waitlists",
+    # "helpers"
 ]
 
 MIDDLEWARE = [

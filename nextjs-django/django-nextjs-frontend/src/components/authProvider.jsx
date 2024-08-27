@@ -11,22 +11,25 @@ const LOGIN_REQUIRED_URL = "/login"
 const LOCAL_STORAGE_KEY = "is-logged-in"
 const LOCAL_USERNAME_KEY = "username"
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
+    
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [username, setUsername] = useState("")
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
     
-    useEffect(()=>{
+    useEffect(() => {
+        
         const storedAuthStatus = localStorage.getItem(LOCAL_STORAGE_KEY)
         if (storedAuthStatus) {
             const storedAuthStatusInt = parseInt(storedAuthStatus)
             setIsAuthenticated(storedAuthStatusInt===1)
         }
-        const storedUn = localStorage.getItem(LOCAL_USERNAME_KEY)
-        if (storedUn) {
-            setUsername(storedUn)
+
+        const storedUsername = localStorage.getItem(LOCAL_USERNAME_KEY)
+        if (storedUsername) {
+            setUsername(storedUsername)
         }
     },[])
 

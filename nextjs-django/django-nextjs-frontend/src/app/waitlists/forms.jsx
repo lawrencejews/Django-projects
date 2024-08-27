@@ -26,6 +26,7 @@ export default function WaitlistForm() {
       },
       body: jsonData
     }
+    
     const response = await fetch(WAITLIST_API_URL, requestOptions)
     if (response.ok) {
       setMessage("Thank You for Joining")

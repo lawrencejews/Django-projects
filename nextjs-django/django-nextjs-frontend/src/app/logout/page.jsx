@@ -1,11 +1,11 @@
 "use client"
-import React from 'react'
 
+import React from 'react'
 import { useAuth } from "@/components/authProvider"
 
 const LOGOUT_URL = "/api/logout/"
 
-const LoginPage = () => {
+const LogoutPage = () => {
 
   const auth = useAuth()
 
@@ -21,8 +21,7 @@ const LoginPage = () => {
     const response = await fetch(LOGOUT_URL, requestOptions)
     if (response.ok) {
       console.log("logged Out")
-      auth.logout()
-      
+      auth.logout()  
     } else {
       console.log(await response.json())
     }
@@ -38,4 +37,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage;
+export default LogoutPage;
