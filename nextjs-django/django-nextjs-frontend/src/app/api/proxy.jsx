@@ -1,4 +1,4 @@
-
+import { getToken } from "@/lib/auth"
 
 // NextJS API Proxy HTTP Class
 export default class ApiProxy {
@@ -17,6 +17,22 @@ export default class ApiProxy {
     return headers
   }
 
+  static async handleFetch(endpoint, requestOptions) {
+
+    let data = {}
+    let status = 500
+
+    try {
+      const response = await fetch(endpoint, requestOptions)
+      data = await response.json()
+      status = await response.status
+    } catch (error) {
+      data = { message: " Cannot reach API server", error: error }
+      status = 500
+    }
+    return { data, status }
+  }
+
   // POST
   static async post(endpoint, object, requireAuth) {
     const jsonDatas = JSON.stringify(object)
@@ -26,7 +42,7 @@ export default class ApiProxy {
       headers: headers,
       body: jsonDatas
     }
-    return await fetch(endpoint, requestOptions)
+    return await ApiProxy.handleFetch(endpoint, requestOptions)
   }
 
   // GET
@@ -36,6 +52,6 @@ export default class ApiProxy {
       method: "GET",
       headers: headers,
     }
-    return await fetch(endpoint, requestOptions)
+    return await ApiProxy.handleFetch(endpoint, requestOptions)
   }
 }
