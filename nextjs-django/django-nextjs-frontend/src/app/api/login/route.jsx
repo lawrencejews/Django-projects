@@ -2,8 +2,9 @@
 
 import { NextResponse } from "next/server"
 import { setRefreshToken, setToken } from "@/lib/auth"
+import { DJANGO_BASE_ENDPOINT } from "@/config/defaults";
 
-const DJANGO_API_LOGIN_URL = "http://127.0.0.1:8001/api/token/pair"
+const DJANGO_API_LOGIN_URL = `${DJANGO_BASE_ENDPOINT}/token/pair`
 
 export async function POST(request) {
 
