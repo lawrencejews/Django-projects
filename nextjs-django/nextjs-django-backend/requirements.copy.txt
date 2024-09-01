@@ -1,5 +1,8 @@
 pydantic[email]
 rav
 django-ninja-jwt[crypto]
+dj-database-url
+psycopg[binary]
 django-ninja
+python-decouple
 Django

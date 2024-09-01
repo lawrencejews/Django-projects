@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 
 import { useAuth } from "@/components/authProvider"
 
-const LOGIN_URL = "/api/login/"
+const LOGIN_URL = "api/login/"
 
 export default function Page() {
 
@@ -27,6 +27,7 @@ export default function Page() {
       },
       body: jsonData
     }
+
     const response = await fetch(LOGIN_URL, requestOptions)
     let data = {}
     try {
@@ -35,6 +36,7 @@ export default function Page() {
 
     }
 
+    //const response = await response.json()
     if (response.ok) {
       console.log("logged in")
       auth.login(data?.username)

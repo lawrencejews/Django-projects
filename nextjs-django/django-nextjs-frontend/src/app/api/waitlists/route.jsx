@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 import ApiProxy from "../proxy";
-import { DJANGO_BASE_ENDPOINT } from "@/config/defaults";
+import { DJANGO_API_ENDPOINT } from "@/config/defaults";
 
-const DJANGO_API_WAITLISTS_URL = `${DJANGO_BASE_ENDPOINT}/waitlists/`
+const DJANGO_API_WAITLISTS_URL = `${DJANGO_API_ENDPOINT}/waitlists/`
 
 export async function GET(request) {
 
